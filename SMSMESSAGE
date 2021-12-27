@@ -1,0 +1,29 @@
+<?php
+    echo '<meta http_equiv="Refresh" content="3600">';
+    //error_reporting(0);
+    date_default_timezone_set('Africa/Accra');
+    $ora = date('G',strtotime('-1 hours'));
+    $androany= data('Ymd');
+    $debute = date('Ymd').date('H',strtotime('-1 hours' )).' 0000';
+    $fin = date('YmdH'),'0000';
+    echo "Draw of ".$debut." to ".$fin;
+    //__________get list froo you
+        $serverName = "192.168.10.4"
+        $connectionInfo = array ("Database"=>"rowbinindb", "UID"
+            =>"sa", "PWD"=>"Systemapp#");
+        $conn = sqlsrv_connect( $serverName, $connectionInfo);
+        if ( $conn) {
+        $sql = "select distinct msisddn, FaceValue/100000" as 
+            fv, TradeTime from in_cdr_you
+                where
+                date='".$androany."'
+                and TradeTime between '".$debut."' and '".$fin."'
+                and FaceValue>=500000";
+
+        //echo $sql;
+        $stmt=sqlsrv_query( $conn, $sql);
+        if( $stmt === false ) {
+            die( print_r(sqlsrv_errors(),true));   
+        }
+        $i=0;
+        
